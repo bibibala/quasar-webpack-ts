@@ -1,0 +1,32 @@
+// 设置表格的行高 编辑默认48
+.q-table thead tr,
+.q-table tbody td {
+    height: 40px;
+}
+
+// 该样式为 输入框前面的文本的 单独样式 不要混淆
+.prefix-text {
+    color: var(--text-4, #4e5969);
+    text-align: right;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+// table组件复选框的样式
+.q-checkbox__inner--truthy,
+.q-checkbox__inner--indet {
+    color: var(--q-primary) !important;
+}
+
+// 修改默认的按钮样式
+.q-btn {
+    z-index: 1;
+    font-size: 12.4px;
+}
+
+// 修改 q-tree 选中的背景色
+.q-tree__node--selected {
+    background-color: #eeeeee;
+}
