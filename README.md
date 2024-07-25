@@ -1,43 +1,30 @@
-# Quasar App (dms)
+# Quasar App webpack 3 vue3
 
 A Quasar Project
 
 ## Install the dependencies
 
 ```bash
-yarn
-# or
 pnpm install
 ```
+## utils
+- 复制到剪贴板方法
+- 日期格式化
+- 事件总线
+- 屏幕尺寸方法封装
+- 本地存储
+- 提示信息
+- 验证
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+## store
+- pinia数据持续话存储
 
-```bash
-quasar dev
-```
+## plugins
+- Crypto 加密封装
 
-### Lint the files
+## boot
+- 路由权限管理
+- axios 封装
 
-```bash
-yarn lint
-# or
-pnpm run lint
-```
-
-### Format the files
-
-```bash
-yarn format
-# or
-pnpm run format
-```
-
-### Build the app for production
-
-```bash
-quasar build
-```
-
-### Customize the configuration
-
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
+## build.config
+- 打包配置,一些固定打包优化和plugins引入
