@@ -1,4 +1,4 @@
-# Quasar App webpack 3 vue3
+# Quasar
 
 A Quasar Project
 
@@ -21,6 +21,7 @@ pnpm install
 
 ## plugins
 - Crypto 加密封装
+- websocket
 
 ## boot
 - 路由权限管理

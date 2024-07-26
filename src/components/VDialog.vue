@@ -17,7 +17,7 @@
 </template>
 <script setup lang="ts">
 
-defineExpose({
+defineProps({
     title: {
         required: true,
         type: String

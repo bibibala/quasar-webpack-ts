@@ -1,7 +1,6 @@
 import { Key } from 'src/utils/useStatic';
 import axios, { AxiosResponse } from 'axios';
 import { MessageType, useToast } from 'src/utils/useToast';
-import { getToken, haveToken } from 'src/utils/useStorage';
 
 export async function downloadFile(data: any, url: string): Promise<void> {
     try {
@@ -17,12 +16,13 @@ export async function downloadFile(data: any, url: string): Promise<void> {
             }
         });
 
-        response.headers[Key.ACCESS_TOKEN] = haveToken() ? getToken() : '';
+        response.headers[Key.ACCESS_TOKEN] = Key.haveToken() ? Key.getToken() : '';
         const contentType = response.headers['content-type'];
         const contentDisposition = response.headers['content-disposition'];
 
         if (contentType === 'application/json') {
             const reader = new FileReader();
+            2;
             reader.readAsText(response.data);
             reader.onload = (event) => {
                 const { msg } = JSON.parse((event.target as FileReader).result as string);
@@ -36,7 +36,7 @@ export async function downloadFile(data: any, url: string): Promise<void> {
 
             let filename = 'downloaded_file';
             if (contentDisposition) {
-                const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                const filenameRegex = /filename[^;=\n]*=((['"]).*?\|[^;\n]*)/;
                 const matches = filenameRegex.exec(contentDisposition);
                 if (matches) {
                     filename = decodeURI(matches[1].replace(/['"]/g, ''));
@@ -50,6 +50,6 @@ export async function downloadFile(data: any, url: string): Promise<void> {
             useToast(MessageType.SUCCESS, '下载成功');
         }
     } catch (error) {
-        useToast(MessageType.ERROR, `下载失败`);
+        useToast(MessageType.ERROR, '下载失败');
     }
 }

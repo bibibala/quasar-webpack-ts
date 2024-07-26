@@ -2,14 +2,16 @@ import { date } from 'quasar';
 
 const { formatDate } = date;
 
-export function FormatDateTime(datetime: Date): string {
+type DateType = number | string
+
+export function FormatDateTime(datetime: DateType): DateType {
     return formatDate(datetime, 'YYYY-MM-DD HH:mm:ss');
 }
 
-export function FormatDate(datetime: Date): string {
+export function FormatDate(datetime: DateType): DateType {
     return formatDate(datetime, 'YYYY-MM-DD');
 }
 
-export function FormatDateTimeShort(datetime: Date): string {
+export function FormatDateTimeShort(datetime: DateType): DateType {
     return formatDate(datetime, 'YYYYMMDDHHmmss');
 }

@@ -2,7 +2,6 @@ import axios from 'axios';
 import { LoadingBar } from 'quasar';
 import { boot } from 'quasar/wrappers';
 import { Key } from 'src/utils/useStatic';
-import { getToken, haveToken } from 'src/utils/useStorage';
 import { MessageType, useToast } from 'src/utils/useToast';
 
 const http = axios.create({
@@ -19,7 +18,7 @@ export default boot(({/*app router*/ }) => {
     http.interceptors.request.use(
         (request) => {
             request.cancelToken = cancelTokenSource.token;
-            request.headers[Key.ACCESS_TOKEN] = haveToken() ? getToken() : '';
+            request.headers[Key.ACCESS_TOKEN] = Key.haveToken() ? Key.getToken() : '';
             LoadingBar.start();
             return request;
         },

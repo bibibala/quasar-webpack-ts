@@ -17,19 +17,8 @@ export function useScreen(sm: Size, xs: Size, md: Size, lg: Size, xl: Size): Siz
     }
 }
 
-interface CustomScreenType {
-    name: 'sm' | 'xs' | 'md' | 'lg' | 'xl';
-    setSizes: (sizes: { sm: Size, md: Size, lg: Size, xl: Size }) => void;
-}
-
-const CustomScreen: CustomScreenType = {
-    name: Screen.name as any,
-    setSizes: (sizes: { sm: Size, md: Size, lg: Size, xl: Size }) => {
-    }
-};
-
-export function setSize(sm: Size, md: Size, lg: Size, xl: Size) {
-    CustomScreen.setSizes({ sm, md, lg, xl });
+export function setSize(sm: number, md: number, lg: number, xl: number) {
+    Screen.setSizes({ sm, md, lg, xl });
 }
 
 
