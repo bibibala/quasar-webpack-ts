@@ -1,4 +1,4 @@
-# Quasar
+# Quasar spa
 
 A Quasar Project
 
@@ -17,7 +17,7 @@ pnpm install
 - 验证
 
 ## store
-- pinia数据持续话存储
+- pinia数据持续化存储
 
 ## plugins
 - Crypto 加密封装
@@ -29,3 +29,6 @@ pnpm install
 
 ## build.config
 - 打包配置,一些固定打包优化和plugins引入
+
+## icon
+- mdi 已引入默认使用这个

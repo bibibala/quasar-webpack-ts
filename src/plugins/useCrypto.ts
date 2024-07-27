@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js';
 
-const key = CryptoJS.enc.Utf8.parse('yISzM8Q3psd0z0I1');
+const key = CryptoJS.enc.Utf8.parse('yISzM8Q3MnbS334222');
 
 type CryptoJSConfig = {
     // 获取他的类型
