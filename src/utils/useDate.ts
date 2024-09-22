@@ -2,7 +2,7 @@ import { date } from 'quasar';
 
 const { formatDate } = date;
 
-type DateType = number | string
+type DateType = number | string;
 
 export function FormatDateTime(datetime: DateType): DateType {
     return formatDate(datetime, 'YYYY-MM-DD HH:mm:ss');

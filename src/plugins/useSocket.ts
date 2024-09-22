@@ -2,10 +2,10 @@ import Websocket from 'websocket-heartbeat-js';
 import { MessageType, useToast } from 'src/utils/useToast';
 
 interface Params {
-    pingMsg?: string,
-    pingTimeout?: number,
-    pongTimeout?: number,
-    reconnectTimeout?: number
+    pingMsg?: string;
+    pingTimeout?: number;
+    pongTimeout?: number;
+    reconnectTimeout?: number;
 }
 
 export function useSocket(msg?: string, params: Params = {}) {
@@ -15,12 +15,12 @@ export function useSocket(msg?: string, params: Params = {}) {
         pingMsg: pingMsg || '',
         pingTimeout: pingTimeout || 15000,
         pongTimeout: pongTimeout || 10000,
-        reconnectTimeout: reconnectTimeout || 2000
+        reconnectTimeout: reconnectTimeout || 2000,
     });
     ws.onopen = () => {
         ws.send(`${msg}`);
     };
-    ws.onmessage = e => {
+    ws.onmessage = (e) => {
         const { code, data, msg } = JSON.parse(e.data);
         if (code === 0) {
             console.info('success');

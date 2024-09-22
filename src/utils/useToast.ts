@@ -4,7 +4,7 @@ export enum MessageType {
     SUCCESS,
     INFO,
     WARN,
-    ERROR
+    ERROR,
 }
 
 export function useToast(type: MessageType, content: string) {
@@ -31,7 +31,7 @@ function showSuccess(content: string) {
         progress: true,
         type: 'positive',
         position: 'top-right',
-        timeout: 600
+        timeout: 600,
         // 显示关闭按钮
         // closeBtn:true
     });
@@ -44,7 +44,7 @@ function showWarn(content: string) {
         progress: true,
         type: 'warning',
         position: 'top-right',
-        timeout: 3000
+        timeout: 3000,
     });
 }
 
@@ -55,7 +55,7 @@ function showInfo(content: string) {
         progress: true,
         type: 'info',
         position: 'top-right',
-        timeout: 2000
+        timeout: 2000,
     });
 }
 
@@ -66,6 +66,6 @@ function showError(content: string) {
         progress: true,
         type: 'negative',
         position: 'top-right',
-        timeout: 3000
+        timeout: 3000,
     });
 }

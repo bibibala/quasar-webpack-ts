@@ -38,6 +38,12 @@ module.exports = configure((ctx) => {
             sourceMap: false,
             // ignorePublicFolder: false,
             // analyze: true,
+            env: {
+                ENCRYPT_KEY: '9999999999999',
+                WEB_APP_URL: ctx.dev
+                    ? 'https://baidu.com'
+                    : 'https://baidu.com',
+            },
             extendWebpack(cfg, {}) {
                 if (!ctx.dev) {
                     cfg.output.publicPath = './';
@@ -58,6 +64,16 @@ module.exports = configure((ctx) => {
                             defaultVendors: {
                                 test: /[\\/]node_modules[\\/]/,
                                 priority: -10,
+                                name(module) {
+                                    const packageName = module.context.match(
+                                        /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+                                    )[1];
+
+                                    return `pkg-${packageName.replace(
+                                        '@',
+                                        ''
+                                    )}`;
+                                },
                             },
                             default: {
                                 minChunks: 2,
@@ -108,7 +124,7 @@ module.exports = configure((ctx) => {
                     primary: '#165DFF',
                     secondary: '#fff',
                     accent: '#F2F3F5',
-                    dark: '#141414',
+                    dark: '#2c2e3e',
                     sheetRead: '#dcdcdc',
                     sheetHighlighted: '#FEEDD2',
                 },

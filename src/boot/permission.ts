@@ -7,13 +7,13 @@ export default boot(({ router }) => {
             if (Key.haveToken()) {
                 next();
             } else {
-                next({ name: Key.ROUTER_NAME });
+                next({ name: Key.ENTRY_NAME });
             }
         } else {
             next();
         }
         if (to.meta.title) {
-            document.title = `${to.meta.title as string}`;
+            document.title = to.meta.title as string;
         } else {
             document.title = to.matched[0].meta.title as string;
         }

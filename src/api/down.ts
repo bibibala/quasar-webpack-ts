@@ -4,43 +4,46 @@ import { MessageType, useToast } from 'src/utils/useToast';
 
 export async function downloadFile(data: any, url: string): Promise<void> {
     try {
+        const headers: Record<string, string> = {
+            'System-Type': 'WEB_TOKEN',
+            'Access-Control-Allow-Origin': '*',
+        };
+
+        const token = Key.haveToken() ? Key.getToken() : '';
+        headers[Key.ACCESS_TOKEN] = String(token);
+
         const response: AxiosResponse<Blob> = await axios({
             data,
             method: 'POST',
-            url: `${process.env.APP_URL}${url}`,
+            url: `${process.env.WEB_APP_URL}${url}`,
             responseType: 'blob',
-            headers: {
-                'System-Type': 'WEB_TOKEN',
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json;charset=utf-8'
-            }
+            headers,
         });
-
-        response.headers[Key.ACCESS_TOKEN] = Key.haveToken() ? Key.getToken() : '';
         const contentType = response.headers['content-type'];
         const contentDisposition = response.headers['content-disposition'];
-
         if (contentType === 'application/json') {
             const reader = new FileReader();
-            2;
             reader.readAsText(response.data);
             reader.onload = (event) => {
-                const { msg } = JSON.parse((event.target as FileReader).result as string);
+                const { msg } = JSON.parse(
+                    (event.target as FileReader).result as string
+                );
                 useToast(MessageType.ERROR, `下载失败,${msg}`);
             };
         } else {
             const link = document.createElement('a');
-            const blob = new Blob([response.data], { type: 'application/vnd.ms-excel' });
+            const blob = new Blob([response.data], {
+                type: 'application/vnd.ms-excel',
+            });
             link.style.display = 'none';
             link.href = URL.createObjectURL(blob);
-
             let filename = 'downloaded_file';
-            if (contentDisposition) {
-                const filenameRegex = /filename[^;=\n]*=((['"]).*?\|[^;\n]*)/;
-                const matches = filenameRegex.exec(contentDisposition);
-                if (matches) {
-                    filename = decodeURI(matches[1].replace(/['"]/g, ''));
-                }
+
+            const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+            const matches = filenameRegex.exec(contentDisposition);
+
+            if (matches) {
+                filename = decodeURI(matches[1].replace(/['"]/g, ''));
             }
 
             link.download = filename;

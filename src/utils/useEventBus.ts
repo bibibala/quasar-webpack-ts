@@ -11,17 +11,27 @@ class EventBusWrapper {
 
     on(eventName: string, callback: (...args: any[]) => void): void {
         if (this.eventRegistry.has(eventName)) {
-            console.warn(`Event "${eventName}" is already registered. Consider using a unique name.`);
+            console.warn(
+                `Event "${eventName}" is already registered. Consider using a unique name.`
+            );
         }
-        this.eventRegistry.set(eventName, (this.eventRegistry.get(eventName) || 0) + 1);
+        this.eventRegistry.set(
+            eventName,
+            (this.eventRegistry.get(eventName) || 0) + 1
+        );
         this.eventBus.on(eventName, callback);
     }
 
     once(eventName: string, callback: (...args: any[]) => void): void {
         if (this.eventRegistry.has(eventName)) {
-            console.warn(`Event "${eventName}" is already registered. Consider using a unique name.`);
+            console.warn(
+                `Event "${eventName}" is already registered. Consider using a unique name.`
+            );
         }
-        this.eventRegistry.set(eventName, (this.eventRegistry.get(eventName) || 0) + 1);
+        this.eventRegistry.set(
+            eventName,
+            (this.eventRegistry.get(eventName) || 0) + 1
+        );
         this.eventBus.once(eventName, (...args: any[]) => {
             callback(...args);
             this.decrementEventCount(eventName);
@@ -30,7 +40,9 @@ class EventBusWrapper {
 
     emit(eventName: string, ...args: any[]): void {
         if (!this.eventRegistry.has(eventName)) {
-            console.warn(`Event "${eventName}" is not registered. Make sure to register it first.`);
+            console.warn(
+                `Event "${eventName}" is not registered. Make sure to register it first.`
+            );
         }
         this.eventBus.emit(eventName, ...args);
     }

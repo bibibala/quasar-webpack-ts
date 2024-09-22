@@ -1,9 +1,7 @@
 <template>
-    <q-page class="row items-center justify-evenly"> </q-page>
+    <VLayout></VLayout>
 </template>
 
 <script setup lang="ts">
-defineOptions({
-    name: 'IndexPage',
-});
+import VLayout from 'components/VLayout.vue';
 </script>

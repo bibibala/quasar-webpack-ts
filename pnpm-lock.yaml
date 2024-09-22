@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@nuintun/qrcode':
+        specifier: 3.4.0
+        version: 3.4.0
       '@quasar/extras':
         specifier: ^1.16.4
         version: 1.16.12
@@ -775,6 +778,9 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@nuintun/qrcode@3.4.0':
+    resolution: {integrity: sha512-ZsxHR8NLGN/FYiGzyQ/sQEOxCIS1pmHDIGaAisQXibUb0x3LHAvObNJKoXAhaMrNnzEKQj8q9fXYeaJurmNrnw==}
 
   '@polka/url@1.0.0-next.25':
     resolution: {integrity: sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==}
@@ -4819,6 +4825,10 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
+
+  '@nuintun/qrcode@3.4.0':
+    dependencies:
+      tslib: 2.6.3
 
   '@polka/url@1.0.0-next.25': {}
 
