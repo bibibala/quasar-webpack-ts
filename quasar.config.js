@@ -33,18 +33,27 @@ module.exports = configure((ctx) => {
             },
             minify: true,
             vueRouterMode: 'hash',
-            // distDir: ctx.dev ? 'preview' : 'release',
+            distDir: 'release',
             preloadChunks: true,
             sourceMap: false,
             // ignorePublicFolder: false,
             // analyze: true,
             env: {
-                ENCRYPT_KEY: '9999999999999',
-                WEB_APP_URL: ctx.dev
-                    ? 'https://baidu.com'
-                    : 'https://baidu.com',
+                ENCRYPT_KEY: '999999999999',
+                // WEB_APP_URL: ctx.dev
+                //     ? 'https://test.bingce.com'
+                //     : 'https://test.bingce.com',
+                // WS_URL: ctx.dev
+                //     ? 'ws://192.168.3.48:40082/ws'
+                //     : 'http://192.168.3.48:40082',
             },
-            extendWebpack(cfg, {}) {
+            // c isClient: true, isServer: false
+            extendWebpack(
+                cfg,
+                {
+                    /*c*/
+                }
+            ) {
                 if (!ctx.dev) {
                     cfg.output.publicPath = './';
                     cfg.optimization.concatenateModules = false;
@@ -54,11 +63,11 @@ module.exports = configure((ctx) => {
                     ];
                     cfg.optimization.splitChunks = {
                         chunks: 'all',
-                        minSize: 0,
-                        maxSize: 20000,
-                        minChunks: 1,
-                        maxAsyncRequests: 30,
-                        maxInitialRequests: 30,
+                        minSize: 20000,
+                        maxSize: 100000,
+                        minChunks: 2,
+                        maxAsyncRequests: 10,
+                        maxInitialRequests: 10,
                         automaticNameDelimiter: '~',
                         cacheGroups: {
                             defaultVendors: {
@@ -69,10 +78,7 @@ module.exports = configure((ctx) => {
                                         /[\\/]node_modules[\\/](.*?)([\\/]|$)/
                                     )[1];
 
-                                    return `pkg-${packageName.replace(
-                                        '@',
-                                        ''
-                                    )}`;
+                                    return `${packageName.replace('@', '')}`;
                                 },
                             },
                             default: {
@@ -87,19 +93,12 @@ module.exports = configure((ctx) => {
         },
         devServer: {
             open: false,
-            port: 9000,
+            port: 9876,
         },
         framework: {
             lang: 'zh-CN',
             iconSet: 'mdi-v7',
-            plugins: [
-                // 'Dialog',
-                'Loading',
-                'Notify',
-                'LoadingBar',
-                // 'LocalStorage',
-                'SessionStorage',
-            ],
+            plugins: ['Loading', 'Notify', 'LoadingBar', 'SessionStorage'],
             config: {
                 screen: {
                     bodyClasses: true,
@@ -121,15 +120,12 @@ module.exports = configure((ctx) => {
                     info: '#4299E1',
                     warning: '#FEAE65',
                     // 主题色
-                    primary: '#165DFF',
-                    secondary: '#fff',
+                    primary: '#2d5cf6',
+                    secondary: '#FFFFFF',
                     accent: '#F2F3F5',
                     dark: '#2c2e3e',
-                    sheetRead: '#dcdcdc',
-                    sheetHighlighted: '#FEEDD2',
                 },
             },
         },
-        animations: [],
     };
 });
